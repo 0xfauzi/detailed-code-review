@@ -31,26 +31,35 @@ For Git targets, resolve and record exact revisions before inspection. Read [ref
 2. Establish intent and scope.
    - Read the change description, issue, design note, or commit message.
    - Identify the intended behavior, invariants, and compatibility promises.
-3. Build a change map.
+3. Build a change map and coverage plan.
    - Summarize data flow, control flow, state transitions, and external effects.
    - Identify trust boundaries, persistent data, public interfaces, and rollout dependencies.
    - Mark high-risk paths before reading line by line.
-4. Inspect the implementation.
+   - Assign every changed surface, affected unchanged surface, and high-risk interaction to a review lane.
+4. Choose the review execution shape.
+   - Use parallel specialists when independent risk lanes justify the cost and delegation is permitted.
+   - Otherwise, run the same lanes as separate local passes.
+   - Read [references/multi-agent-review.md](references/multi-agent-review.md) for routing, synthesis, and stopping rules.
+5. Inspect the implementation by assigned lanes.
    - Trace changed values through relevant callers and consumers.
    - Test assumptions against types, schemas, documentation, and repository patterns.
    - Check failure paths, cleanup, retries, concurrency, and partial completion.
    - Read tests as evidence. Do not treat their presence as proof.
-5. Validate candidate findings.
+6. Validate and synthesize candidate findings.
    - Reproduce the issue with an existing test or a focused command when practical.
    - Otherwise, construct a concrete execution path from input to failure.
    - Check whether nearby code, framework behavior, or configuration prevents the issue.
+   - Deduplicate candidates by root cause, trigger, and outcome.
+   - Assign a secondary reviewer to every high-risk invariant when delegation is permitted.
+   - Record whether each `P0` and `P1` is independently confirmed, coordinator-reproduced, or unconfirmed.
    - Remove style-only comments that automated tools should handle.
    - Remove findings that depend on unsupported assumptions.
-6. Run the risk critique pass when the protocol marks the change as high risk.
-   - Recheck the change from a fresh failure hypothesis.
-   - Validate new candidates with the same finding standard.
-   - Discard duplicate or speculative candidates.
-7. Report findings first.
+7. Run a fresh integration challenge.
+   - Assign an owner and record reviewed edges, hypotheses, commands, rejected candidates, and uncovered areas.
+   - Inspect cross-lane interactions and uncovered high-risk edges.
+   - Reopen affected lanes when the challenge finds a new `P0` or `P1` candidate.
+   - Finish only after the completion gate in the multi-agent protocol passes.
+8. Report findings first.
    - Order findings by impact and urgency.
    - Give each finding a stable ID such as `F1`.
    - Attach each finding to the smallest useful target line range.
@@ -99,7 +108,7 @@ Distinguish these comment types:
 
 ## Review Summary
 
-After the findings, include a lightweight coverage ledger. List only relevant risk areas.
+After the findings, include the planned coverage ledger. List only relevant risk areas.
 
 Use these coverage states:
 
@@ -116,6 +125,10 @@ Then state one merge verdict:
 - `Approve with follow-up`: Only `P3` findings or non-blocking suggestions remain.
 - `Approve`: No actionable findings or material coverage gaps remain.
 
+Do not approve when any relevant lane remains `Not covered`.
+
+Do not give an unconditional approval when a high-risk invariant lacked available independent review.
+
 Also state one review result:
 
 - Findings present: Summarize the main risk and name checks you ran.
@@ -130,6 +143,7 @@ Track author responses by finding ID. Use `open`, `accepted`, `rejected`, `dispu
 
 - Record the latest evidence and a short reason for every state change.
 - Keep rejected and disputed findings visible in the ledger.
+- Match findings across rounds by root cause, trigger, outcome, and affected contract before assigning new IDs.
 - Reopen a rejected finding only when new evidence changes the conclusion.
 - Do not edit the repository only to store review state.
 

@@ -17,6 +17,20 @@ Run every selected case under both conditions:
 
 Randomize condition order for each case. Keep every other setting fixed.
 
+## Architecture comparison
+
+Use a separate paired experiment to measure review decomposition:
+
+1. One skill-enabled agent with one pass.
+2. One skill-enabled agent with fresh repeated passes and a matched resource budget.
+3. Fixed-theme specialist lanes.
+4. Risk-adaptive specialist lanes.
+5. Hybrid theme and component lanes.
+
+The repeated single-agent condition separates architecture effects from additional compute.
+
+Freeze the same base and head revisions across every round. A changed target starts a new case.
+
 ## Public datasets
 
 Use [Code Review Bench](https://github.com/withmartian/code-review-benchmark) as the primary fixed benchmark.
@@ -41,6 +55,8 @@ Record these values before generating outputs:
 - Token, time, and cost limits.
 - Run order and random seed.
 
+Store them in a run manifest. Bind every run to the case revisions and diff digest.
+
 Do not change a frozen value after viewing scores. Record any deviation beside the result.
 
 ## Pilot and repetitions
@@ -51,22 +67,29 @@ Measure repeated-run variance on the pilot. Use that variance to select the fina
 
 Do not invent a repetition count. Do not remove failed runs from either condition.
 
+Record zero-finding, failed, and unstarted runs explicitly. Findings are not evidence that a run occurred.
+
 ## Metrics
 
 Report these measures for each condition and their paired difference:
 
 - Gold-defect recall.
+- First-round P1 recall.
+- P1 escape, late discovery, residual, and saturation rates.
 - Finding precision.
 - Usefulness.
 - False-positive count and rate.
 - Signal-to-noise ratio.
 - `F0.5`, which weights precision above recall.
 - Duplicate-finding rate.
+- Blocking-priority recognition.
 - Severity agreement.
 - Wall time, token usage, and cost.
 - Executable resolution rate for c-CRAB.
 
 Keep executable resolution separate from comment-quality judgments.
+
+Classify later P1 findings by revision provenance. Exclude findings introduced by later fixes from first-round escape metrics.
 
 ## Judging
 
@@ -80,7 +103,13 @@ Use human review on a measured sample. Report agreement between human and model 
 
 Use paired bootstrap confidence intervals across cases. Record the resampling method and count.
 
+Score each replicate first. Compare only completed case-replicate pairs across conditions.
+
+Report paired, excluded, failed, and unstarted counts beside every comparison.
+
 Report results by language, issue type, difficulty, and risk area when the dataset supports them.
+
+Plot cumulative P1 recall and marginal new P1 findings by round.
 
 Do not hide metric regressions behind one composite score.
 

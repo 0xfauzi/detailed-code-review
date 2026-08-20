@@ -24,6 +24,20 @@ The fixed smoke input contains two synthetic cases and four judged findings.
 
 The repository validator compares measured values against the checked-in expected file.
 
+## Multi-round evaluator smoke test
+
+The second synthetic fixture checks round tracking, duplicate handling, and condition comparison.
+
+| Metric | Single agent | Adaptive swarm |
+| --- | ---: | ---: |
+| First-round P1 recall | 0.500000 | 1.000000 |
+| Late P1 rate | 0.500000 | 0.000000 |
+| P1 saturation gap | 0.500000 | 0.000000 |
+| Duplicate burden | 0.250000 | 0.000000 |
+| Blocking recognition recall | 1.000000 | 0.500000 |
+
+These values prove condition calculations against fixed labels. They are not model benchmark results.
+
 ## Publication rule
 
 Do not describe the smoke values as benchmark results.

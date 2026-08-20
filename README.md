@@ -40,7 +40,7 @@ Then request a review with `$detailed-code-review`.
 1. **Fix the comparison range first.** Resolve exact base, head, and merge-base revisions before reading the diff.
 2. **Map the change before judging lines.** Trace data, control, state, callers, consumers, and external effects.
 3. **Require a real failure path.** Every finding needs a trigger, an observable result, and repository evidence.
-4. **Run a fresh high-risk pass.** Recheck security, data, concurrency, compatibility, and deployment interactions when they apply.
+4. **Route review lanes before inspection.** Use independent specialists for distinct risks, then synthesize their evidence.
 5. **Show what was covered.** Record reviewed, irrelevant, uncovered, and defective risk areas.
 6. **Give one merge verdict.** Choose `Block`, `Request changes`, `Discuss`, `Approve with follow-up`, or `Approve`.
 7. **Keep the history.** Track accepted, rejected, disputed, fixed, deferred, and open findings by stable identifier.
@@ -57,7 +57,7 @@ A finding either matches a real defect, identifies another useful issue, or crea
 
 The included smoke fixtures test the scoring arithmetic. They contain synthetic labels and say nothing about model review quality.
 
-The closest test is paired evaluation on real pull requests. The same agent reviews each case with and without the skill.
+The closest test is paired evaluation on real pull requests. It measures first-round P1 recall, late discovery, noise, and cost.
 
 That benchmark has not run yet. `research/results.md` says so plainly instead of presenting smoke values as product results.
 

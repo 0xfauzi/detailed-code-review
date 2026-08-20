@@ -1,7 +1,7 @@
 {
   "name": "detailed-code-review",
   "description": "Review code changes for evidence-backed defects, record coverage, and give an explicit merge verdict.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "0xfauzi"
   },
