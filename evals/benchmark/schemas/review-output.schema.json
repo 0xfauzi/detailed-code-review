@@ -1,0 +1,33 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "title": {"type": "string"},
+          "body": {"type": "string"},
+          "priority": {"enum": ["P0", "P1", "P2", "P3"]},
+          "file": {"type": ["string", "null"]},
+          "line": {"type": ["integer", "null"], "minimum": 1}
+        },
+        "required": ["title", "body", "priority", "file", "line"]
+      }
+    },
+    "verdict": {
+      "enum": ["Block", "Request changes", "Discuss", "Approve with follow-up", "Approve"]
+    },
+    "coverage": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "validation_gaps": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  },
+  "required": ["findings", "verdict", "coverage", "validation_gaps"]
+}

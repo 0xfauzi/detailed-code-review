@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "judgments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "candidate_id": {"type": "string"},
+          "classification": {"enum": ["bug_hit", "valid_suggestion", "noise"]},
+          "gold_bug_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "reason": {"type": "string"}
+        },
+        "required": ["candidate_id", "classification", "gold_bug_ids", "reason"]
+      }
+    }
+  },
+  "required": ["judgments"]
+}

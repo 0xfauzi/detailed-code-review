@@ -59,7 +59,9 @@ The included smoke fixtures test the scoring arithmetic. They contain synthetic 
 
 The closest test is paired evaluation on real pull requests. It measures first-round P1 recall, late discovery, noise, and cost.
 
-That benchmark has not run yet. `research/results.md` says so plainly instead of presenting smoke values as product results.
+A two-case live pilot has completed. Treat it as pipeline evidence, not a leaderboard result.
+
+`research/results.md` reports its gains, regressions, costs, and validity limits.
 
 `evals/README.md` explains each available measurement and its limits. `research/benchmark-design.md` fixes the public comparison before scores exist.
 

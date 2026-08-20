@@ -93,6 +93,8 @@ The evaluator reports aggregate, per-condition, and per-benchmark metrics:
 - Delivery noise rate: Noise and duplicate comments divided by all delivered comments.
 - Signal-to-noise ratio: Canonical useful comments divided by canonical noise comments.
 - First-round P1 recall: Initial-target P1 defects found in round one divided by all initial-target P1 defects.
+- Macro first-round P1 recall: Mean per-case-replicate P1 recall, excluding units without P1 gold.
+- Macro recall: Mean per-case-replicate gold recall.
 - P1 escape rate: One minus first-round P1 recall.
 - Late P1 rate: Initial-target P1 defects first found after round one divided by all initial-target P1 defects.
 - Residual P1 rate at `K`: Initial-target P1 defects not found by the completed endpoint divided by all initial-target P1 defects.

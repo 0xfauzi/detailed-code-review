@@ -18,6 +18,7 @@ RUN_STATUSES = {"complete", "failed", "not_run"}
 RESOURCE_FIELDS = ("token_count", "tool_call_count", "wall_time_seconds", "cost_usd")
 METRIC_NAMES = (
     "recall",
+    "macro_recall",
     "canonical_precision",
     "canonical_usefulness",
     "canonical_noise_rate",
@@ -25,6 +26,7 @@ METRIC_NAMES = (
     "delivery_usefulness",
     "delivery_noise_rate",
     "first_round_p1_recall",
+    "macro_first_round_p1_recall",
     "p1_escape_rate",
     "late_p1_rate",
     "residual_p1_rate_at_endpoint",
@@ -493,6 +495,17 @@ def score_units(
     burden = noise + duplicate_count
     first_recall = ratio(len(first_p1), len(p1_gold))
     final_recall = ratio(len(hit_p1), len(p1_gold))
+    unit_recalls: list[float] = []
+    unit_p1_recalls: list[float] = []
+    for case_id, replicate in sorted(unit_keys):
+        unit_gold = {key for key in gold if key[:2] == (case_id, replicate)}
+        unit_p1 = unit_gold & p1_gold
+        unit_recall = ratio(len(unit_gold & hit), len(unit_gold))
+        unit_p1_recall = ratio(len(unit_p1 & first_p1), len(unit_p1))
+        if unit_recall is not None:
+            unit_recalls.append(unit_recall)
+        if unit_p1_recall is not None:
+            unit_p1_recalls.append(unit_p1_recall)
 
     rounds: dict[str, dict[str, Any]] = {}
     for number in range(1, max((unit["endpoint"] for unit in units), default=0) + 1):
@@ -573,6 +586,7 @@ def score_units(
         "useful_finding_count": useful,
         "false_positive_count": noise,
         "recall": ratio(len(hit), len(gold)),
+        "macro_recall": ratio(sum(unit_recalls), len(unit_recalls)),
         "canonical_precision": canonical_precision,
         "canonical_usefulness": canonical_usefulness,
         "canonical_noise_rate": canonical_noise_rate,
@@ -593,6 +607,9 @@ def score_units(
         "late_p1_count": len(late_p1),
         "residual_p1_count_at_endpoint": len(residual_p1),
         "first_round_p1_recall": first_recall,
+        "macro_first_round_p1_recall": ratio(
+            sum(unit_p1_recalls), len(unit_p1_recalls)
+        ),
         "final_p1_recall": final_recall,
         "p1_escape_rate": ratio(len(p1_gold) - len(first_p1), len(p1_gold)),
         "late_p1_rate": ratio(len(late_p1), len(p1_gold)),

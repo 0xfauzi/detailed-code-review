@@ -55,6 +55,18 @@ def validate_required_files() -> None:
         ROOT / "evals" / "README.md",
         ROOT / "research" / "benchmark-design.md",
         ROOT / "research" / "results.md",
+        ROOT / "evals" / "benchmark" / "README.md",
+        ROOT / "evals" / "benchmark" / "NOTICE.md",
+        ROOT / "evals" / "benchmark" / "run_pilot.py",
+        ROOT / "evals" / "benchmark" / "results" / "pilot-v1" / "RESULTS.md",
+        ROOT / "evals" / "benchmark" / "results" / "pilot-v1" / "report.json",
+        ROOT
+        / "evals"
+        / "benchmark"
+        / "results"
+        / "pilot-v1"
+        / "comparisons"
+        / "forced-vs-local.json",
         SKILL / "references" / "multi-agent-review.md",
         SKILL / "fixtures" / "multi-round-cases.jsonl",
         SKILL / "fixtures" / "multi-round-runs.jsonl",
@@ -253,6 +265,49 @@ def validate_run_and_duplicate_failures() -> None:
             fail("A cyclic duplicate graph was accepted")
 
 
+def validate_live_pilot_artifacts() -> None:
+    pilot = ROOT / "evals" / "benchmark" / "results" / "pilot-v1"
+    runs_path = pilot / "runs.jsonl"
+    judgments_path = pilot / "judgments.jsonl"
+    cases_path = pilot / "evaluator-cases.jsonl"
+    report_path = pilot / "report.json"
+    runs = [
+        json.loads(line) for line in runs_path.read_text(encoding="utf-8").splitlines()
+    ]
+    if len(runs) != 8 or any(run.get("status") != "complete" for run in runs):
+        fail("The live pilot must contain eight completed reviewer runs")
+    forced = [run for run in runs if run.get("condition") == "forced_swarm"]
+    if len(forced) != 2 or sum(run.get("subagent_completed", 0) for run in forced) != 4:
+        fail("The forced swarm did not retain four completed specialists")
+    adaptive = [run for run in runs if run.get("condition") == "adaptive_swarm"]
+    if any(run.get("subagent_spawned") != 0 for run in adaptive):
+        fail("The adaptive condition no longer records zero spawned specialists")
+    completed = subprocess.run(
+        [
+            sys.executable,
+            str(SKILL / "scripts" / "evaluate_reviews.py"),
+            "--cases",
+            str(cases_path),
+            "--runs",
+            str(runs_path),
+            "--judgments",
+            str(judgments_path),
+        ],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    measured = json.loads(completed.stdout)
+    expected = load_json(report_path)
+    if measured != expected:
+        fail("The checked-in live pilot report does not match its raw artifacts")
+    conditions = measured.get("by_condition", {})
+    if conditions.get("forced_swarm", {}).get("first_round_p1_recall") != 1.0:
+        fail("The forced-swarm pilot P1 recall changed")
+    if conditions.get("single_with_skill", {}).get("first_round_p1_recall") != 0.5:
+        fail("The local-skill pilot P1 recall changed")
+
+
 def main() -> int:
     try:
         validate_metadata()
@@ -260,6 +315,7 @@ def main() -> int:
         validate_smoke_evaluation()
         validate_multi_round_evaluation()
         validate_run_and_duplicate_failures()
+        validate_live_pilot_artifacts()
     except (
         OSError,
         ValueError,

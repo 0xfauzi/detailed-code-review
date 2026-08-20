@@ -14,7 +14,7 @@ It measures first-round P1 recall, late discovery, canonical precision, delivery
 
 This is the closest available measurement. It still depends on finite gold findings and fallible judges.
 
-No paired public run has completed. `research/results.md` records that missing result.
+A two-case paired pilot has completed. `research/results.md` records its results and limits.
 
 ## 2. Can a reported defect be resolved and tested?
 

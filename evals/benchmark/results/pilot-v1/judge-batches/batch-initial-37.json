@@ -1,0 +1,348 @@
+{
+  "api_error_status": null,
+  "duration_api_ms": 92478,
+  "duration_ms": 92703,
+  "fast_mode_disabled_reason": "sdk_opt_in_required",
+  "fast_mode_state": "off",
+  "is_error": false,
+  "modelUsage": {
+    "claude-opus-5": {
+      "cacheCreationInputTokens": 17900,
+      "cacheReadInputTokens": 43807,
+      "canonicalModel": "claude-opus-5",
+      "contextWindow": 1000000,
+      "costUSD": 0.3959635,
+      "inputTokens": 2,
+      "maxOutputTokens": 64000,
+      "outputTokens": 7802,
+      "provider": "firstParty",
+      "webSearchRequests": 0
+    }
+  },
+  "num_turns": 2,
+  "permission_denials": [],
+  "result": "{\"judgments\":[{\"candidate_id\":\"450221afc1fd684d\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Concrete, actionable design defect: the unsubscribe action is added to ensure_logged_in, so the email-click path hits a login wall. Cites the existing token-based EmailController#unsubscribe as the in-repo precedent and implied fix. Not any gold bug.\"},{\"candidate_id\":\"ad52013e47c3b551\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G1\"],\"reason\":\"Exactly the gold nil-pointer: TopicUser.find_by returns nil and tu.notification_level is called without a guard. Adds a repro and points to TopicUser.change as the fix.\"},{\"candidate_id\":\"998085dc48bed3f7\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Concrete security-consistency defect: raw request.user.is_superuser instead of is_active_superuser(request), which the endpoint's own permission class uses. Actionable one-line fix, but distinct from the gold member-is-None crash.\"},{\"candidate_id\":\"e91bc75e22079704\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Bypassing TopicUser.change drops the MessageBus notification_level_change broadcast and the notifications_reason_id/changed_at bookkeeping. Concrete and fixable, unrelated to the nil crash or the typo.\"},{\"candidate_id\":\"9fb85bb244736f80\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G1\"],\"reason\":\"Identifies the negative-offset queryset slice that Django rejects, and correctly calls the accompanying comment factually wrong. Same defect as gold G1.\"},{\"candidate_id\":\"4d53b1d6e0b6ce8c\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Targets a different defect than G1: the shared BasePaginator now silently clamps a tampered forward cursor to 0 instead of failing loudly, an unscoped change to app-wide infrastructure. The negative-slicing crash appears only as a subordinate remark about the is_prev branch, so this is not a G1 hit.\"},{\"candidate_id\":\"f1cd0a773557b2f4\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Concrete client-side defect with a named mechanism: createRecord hydrates through the shared identity map, and .set() on a zero-arity computed property permanently de-computes notificationReasonText. Self-scoped as low likelihood, which is honest rather than hedging.\"},{\"candidate_id\":\"a166b058923483e9\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Traces a real end-to-end regression: skipping TopicUser.change leaves notifications_reason_id nil, so auto_track on the user's next post force-upgrades the level back to tracking and discards the unsubscribe. Distinct from the gold nil crash.\"},{\"candidate_id\":\"4302c42eb0ab6641\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Concrete authorization defect: has_global_access means 'not team-restricted' and defaults to True, so the 'administrators only' gate admits ordinary members. Different defect from the gold member-is-None AttributeError on the same line.\"},{\"candidate_id\":\"36416100838daf63\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Same actionable finding as 998085dc: static is_superuser flag versus session-scoped is_active_superuser, with a specific path (superuser who is also an org member) that reaches the endpoint without superuser mode. Not a gold bug.\"},{\"candidate_id\":\"642e4e91e35e27dc\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G1\"],\"reason\":\"The gold nil-pointer, with the extra evidence that PostAlerter guards the same lookup with .try(:notification_level) for precisely this reason.\"},{\"candidate_id\":\"41da51934677e8f1\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G2\"],\"reason\":\"Names the nullable RpcUserOrganizationContext.member and the unguarded .has_global_access access, the same AttributeError as gold G2. Its reachability argument is weaker than the org-token analysis, but the defect is the same.\"},{\"candidate_id\":\"f6a030cd5c442992\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Raw find_by plus save! instead of TopicUser.change, losing the MessageBus publish and the notifications_reason_id/changed_at fields that notificationReasonText reads. Concrete and actionable; not a gold bug.\"},{\"candidate_id\":\"fa6f669818a9175a\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Real interface regression: the unsubscribe_link I18n string now needs an %{unsubscribe_url} argument that MessageBuilder does not default, so any other caller setting add_unsubscribe_link fails to send. Specific and fixable.\"},{\"candidate_id\":\"e2089cbbe5e58274\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Same class as 4d53b1d6: the silent clamp in the shared base paginator masks corrupted or tampered cursors across every endpoint. Distinct from the gold negative-slicing crash in OptimizedCursorPaginator.\"},{\"candidate_id\":\"5a45d85404e055a6\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Concrete inconsistency: unsubscribe redirects to the absolute HTML unsubscribe_url on a slug mismatch, skipping the format and page handling that redirect_to_correct_topic performs. Actionable, not a gold bug.\"},{\"candidate_id\":\"884856777ffe2533\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G2\"],\"reason\":\"The gold typo: stopNotificiationsText should be stopNotificationsText, in both controller and template.\"},{\"candidate_id\":\"a1c78338bc29af01\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"The has_global_access gate defect again, with a cited default and a corroborating in-repo comment. Widens the reachable population for the real crashes but is itself a separate finding from any gold bug.\"},{\"candidate_id\":\"904d0602d2256c77\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Supported and actionable: a comment in Cursor.__init__ asserts a capability with no corresponding code change, and the fix (delete or correct it) is unambiguous. Minor, but not an unsupported claim.\"},{\"candidate_id\":\"7e8789fc6479ae26\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Concrete behavioral mismatch: watching/tracking users are stepped down only to regular, while PostAlerter suppresses notifications only at muted, so the promised 'you will stop receiving notifications' copy is false on first click. Distinct from both gold bugs.\"},{\"candidate_id\":\"19202fd5359c4f49\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G1\"],\"reason\":\"Gold G1, with the full reachability chain: Cursor.from_string does not validate the sign, and Endpoint.paginate catches only BadPaginationError, so the negative slice surfaces as an unhandled 500.\"},{\"candidate_id\":\"6b5dfbbed6b97f2e\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G3\"],\"reason\":\"Gold G3: math.floor/ceil applied to the datetime key, contrasted with DateTimePaginator.get_item_key which converts to a float timestamp first.\"},{\"candidate_id\":\"2a330a50e3a84581\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"A separate method from G3: value_from_cursor returns cursor.value undecoded, so a returning cursor binds an integer against a timestamp column. Concrete and actionable, and it survives independently of the get_item_key fix.\"},{\"candidate_id\":\"5b57f5515b787234\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"State-mutating GET outside Rails CSRF protection, with two concrete triggers (cross-site img tag, email link prefetchers) and the sibling PUT routes as the in-repo contrast. Not a gold bug.\"},{\"candidate_id\":\"9a19be0c1595dcf7\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Same CSRF-on-GET defect, grounded in protect_from_forgery covering only unsafe verbs and in the sibling mutating actions all using PUT. Concrete and actionable.\"},{\"candidate_id\":\"88a1c44d1b72c34a\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G2\"],\"reason\":\"Gold G2, with the exact auth path the gold comment names: org auth token means user_id=None, so member is None and .has_global_access raises AttributeError despite valid org:write scope.\"},{\"candidate_id\":\"2800b6f969dacc77\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G1\"],\"reason\":\"Gold G1, plus a second failure mode on the same line (notification_level is nullable, so the comparison can also raise on an existing row). The extra mode reinforces rather than replaces the gold defect.\"},{\"candidate_id\":\"fd3b61212d45359d\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G3\"],\"reason\":\"Gold G3: get_item_key was copied from the numeric Paginator rather than DateTimePaginator, so it TypeErrors on the datetime key on the first non-empty page.\"},{\"candidate_id\":\"642dcc426325d87b\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G1\"],\"reason\":\"Gold G1, with the user-controlled input path traced from Cursor.from_string through to an unhandled 500.\"},{\"candidate_id\":\"0466d5a537c1110a\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G1\"],\"reason\":\"Gold G1: unguarded find_by result dereferenced, reachable by any authenticated user for a topic they have no history with.\"},{\"candidate_id\":\"51658c1e175da10f\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G1\"],\"reason\":\"Gold G1. It names ValueError where other candidates say AssertionError; the exception type differs by Django version and I did not verify which is pinned here, but the defect, trigger, and fix are identical.\"},{\"candidate_id\":\"8ecd181b85874c25\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G2\"],\"reason\":\"Gold G2: the stopNotificiationsText misspelling in the Ember controller and template.\"},{\"candidate_id\":\"e683894a49b86e17\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G2\"],\"reason\":\"Gold G2: member is typed Optional and is dereferenced unconditionally on every GET, before the optimized_pagination flag is even consulted.\"},{\"candidate_id\":\"c03592be2f22575d\",\"classification\":\"bug_hit\",\"gold_bug_ids\":[\"G3\"],\"reason\":\"Gold G3 as the primary finding, correctly attributed to reusing the numeric Paginator logic against a datetime column. The bundled value_from_cursor point is an additional defect on top.\"},{\"candidate_id\":\"7892ccbe6fe77c74\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Like the other BasePaginator candidates, its subject is the app-wide silent clamp and its asymmetry, not the OptimizedCursorPaginator negative slice that gold G1 names. The is_prev crash is mentioned only as a consequence of the asymmetry.\"},{\"candidate_id\":\"df22a3c012754267\",\"classification\":\"noise\",\"gold_bug_ids\":[],\"reason\":\"Generic 'no tests added' observation. It names no defect and no specific test to write, so it is not actionable on its own; the crash it gestures at is reported properly by other candidates.\"},{\"candidate_id\":\"09eeaf7730aaa86f\",\"classification\":\"valid_suggestion\",\"gold_bug_ids\":[],\"reason\":\"Concrete and well-argued: given the endpoint already requires org:write, the has_global_access check adds no restriction over the existing permission class. Distinct from the gold member-is-None crash on the same line.\"}]}",
+  "stop_reason": "tool_use",
+  "structured_output": {
+    "judgments": [
+      {
+        "candidate_id": "450221afc1fd684d",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Concrete, actionable design defect: the unsubscribe action is added to ensure_logged_in, so the email-click path hits a login wall. Cites the existing token-based EmailController#unsubscribe as the in-repo precedent and implied fix. Not any gold bug."
+      },
+      {
+        "candidate_id": "ad52013e47c3b551",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G1"
+        ],
+        "reason": "Exactly the gold nil-pointer: TopicUser.find_by returns nil and tu.notification_level is called without a guard. Adds a repro and points to TopicUser.change as the fix."
+      },
+      {
+        "candidate_id": "998085dc48bed3f7",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Concrete security-consistency defect: raw request.user.is_superuser instead of is_active_superuser(request), which the endpoint's own permission class uses. Actionable one-line fix, but distinct from the gold member-is-None crash."
+      },
+      {
+        "candidate_id": "e91bc75e22079704",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Bypassing TopicUser.change drops the MessageBus notification_level_change broadcast and the notifications_reason_id/changed_at bookkeeping. Concrete and fixable, unrelated to the nil crash or the typo."
+      },
+      {
+        "candidate_id": "9fb85bb244736f80",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G1"
+        ],
+        "reason": "Identifies the negative-offset queryset slice that Django rejects, and correctly calls the accompanying comment factually wrong. Same defect as gold G1."
+      },
+      {
+        "candidate_id": "4d53b1d6e0b6ce8c",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Targets a different defect than G1: the shared BasePaginator now silently clamps a tampered forward cursor to 0 instead of failing loudly, an unscoped change to app-wide infrastructure. The negative-slicing crash appears only as a subordinate remark about the is_prev branch, so this is not a G1 hit."
+      },
+      {
+        "candidate_id": "f1cd0a773557b2f4",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Concrete client-side defect with a named mechanism: createRecord hydrates through the shared identity map, and .set() on a zero-arity computed property permanently de-computes notificationReasonText. Self-scoped as low likelihood, which is honest rather than hedging."
+      },
+      {
+        "candidate_id": "a166b058923483e9",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Traces a real end-to-end regression: skipping TopicUser.change leaves notifications_reason_id nil, so auto_track on the user's next post force-upgrades the level back to tracking and discards the unsubscribe. Distinct from the gold nil crash."
+      },
+      {
+        "candidate_id": "4302c42eb0ab6641",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Concrete authorization defect: has_global_access means 'not team-restricted' and defaults to True, so the 'administrators only' gate admits ordinary members. Different defect from the gold member-is-None AttributeError on the same line."
+      },
+      {
+        "candidate_id": "36416100838daf63",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Same actionable finding as 998085dc: static is_superuser flag versus session-scoped is_active_superuser, with a specific path (superuser who is also an org member) that reaches the endpoint without superuser mode. Not a gold bug."
+      },
+      {
+        "candidate_id": "642e4e91e35e27dc",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G1"
+        ],
+        "reason": "The gold nil-pointer, with the extra evidence that PostAlerter guards the same lookup with .try(:notification_level) for precisely this reason."
+      },
+      {
+        "candidate_id": "41da51934677e8f1",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G2"
+        ],
+        "reason": "Names the nullable RpcUserOrganizationContext.member and the unguarded .has_global_access access, the same AttributeError as gold G2. Its reachability argument is weaker than the org-token analysis, but the defect is the same."
+      },
+      {
+        "candidate_id": "f6a030cd5c442992",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Raw find_by plus save! instead of TopicUser.change, losing the MessageBus publish and the notifications_reason_id/changed_at fields that notificationReasonText reads. Concrete and actionable; not a gold bug."
+      },
+      {
+        "candidate_id": "fa6f669818a9175a",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Real interface regression: the unsubscribe_link I18n string now needs an %{unsubscribe_url} argument that MessageBuilder does not default, so any other caller setting add_unsubscribe_link fails to send. Specific and fixable."
+      },
+      {
+        "candidate_id": "e2089cbbe5e58274",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Same class as 4d53b1d6: the silent clamp in the shared base paginator masks corrupted or tampered cursors across every endpoint. Distinct from the gold negative-slicing crash in OptimizedCursorPaginator."
+      },
+      {
+        "candidate_id": "5a45d85404e055a6",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Concrete inconsistency: unsubscribe redirects to the absolute HTML unsubscribe_url on a slug mismatch, skipping the format and page handling that redirect_to_correct_topic performs. Actionable, not a gold bug."
+      },
+      {
+        "candidate_id": "884856777ffe2533",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G2"
+        ],
+        "reason": "The gold typo: stopNotificiationsText should be stopNotificationsText, in both controller and template."
+      },
+      {
+        "candidate_id": "a1c78338bc29af01",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "The has_global_access gate defect again, with a cited default and a corroborating in-repo comment. Widens the reachable population for the real crashes but is itself a separate finding from any gold bug."
+      },
+      {
+        "candidate_id": "904d0602d2256c77",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Supported and actionable: a comment in Cursor.__init__ asserts a capability with no corresponding code change, and the fix (delete or correct it) is unambiguous. Minor, but not an unsupported claim."
+      },
+      {
+        "candidate_id": "7e8789fc6479ae26",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Concrete behavioral mismatch: watching/tracking users are stepped down only to regular, while PostAlerter suppresses notifications only at muted, so the promised 'you will stop receiving notifications' copy is false on first click. Distinct from both gold bugs."
+      },
+      {
+        "candidate_id": "19202fd5359c4f49",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G1"
+        ],
+        "reason": "Gold G1, with the full reachability chain: Cursor.from_string does not validate the sign, and Endpoint.paginate catches only BadPaginationError, so the negative slice surfaces as an unhandled 500."
+      },
+      {
+        "candidate_id": "6b5dfbbed6b97f2e",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G3"
+        ],
+        "reason": "Gold G3: math.floor/ceil applied to the datetime key, contrasted with DateTimePaginator.get_item_key which converts to a float timestamp first."
+      },
+      {
+        "candidate_id": "2a330a50e3a84581",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "A separate method from G3: value_from_cursor returns cursor.value undecoded, so a returning cursor binds an integer against a timestamp column. Concrete and actionable, and it survives independently of the get_item_key fix."
+      },
+      {
+        "candidate_id": "5b57f5515b787234",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "State-mutating GET outside Rails CSRF protection, with two concrete triggers (cross-site img tag, email link prefetchers) and the sibling PUT routes as the in-repo contrast. Not a gold bug."
+      },
+      {
+        "candidate_id": "9a19be0c1595dcf7",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Same CSRF-on-GET defect, grounded in protect_from_forgery covering only unsafe verbs and in the sibling mutating actions all using PUT. Concrete and actionable."
+      },
+      {
+        "candidate_id": "88a1c44d1b72c34a",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G2"
+        ],
+        "reason": "Gold G2, with the exact auth path the gold comment names: org auth token means user_id=None, so member is None and .has_global_access raises AttributeError despite valid org:write scope."
+      },
+      {
+        "candidate_id": "2800b6f969dacc77",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G1"
+        ],
+        "reason": "Gold G1, plus a second failure mode on the same line (notification_level is nullable, so the comparison can also raise on an existing row). The extra mode reinforces rather than replaces the gold defect."
+      },
+      {
+        "candidate_id": "fd3b61212d45359d",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G3"
+        ],
+        "reason": "Gold G3: get_item_key was copied from the numeric Paginator rather than DateTimePaginator, so it TypeErrors on the datetime key on the first non-empty page."
+      },
+      {
+        "candidate_id": "642dcc426325d87b",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G1"
+        ],
+        "reason": "Gold G1, with the user-controlled input path traced from Cursor.from_string through to an unhandled 500."
+      },
+      {
+        "candidate_id": "0466d5a537c1110a",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G1"
+        ],
+        "reason": "Gold G1: unguarded find_by result dereferenced, reachable by any authenticated user for a topic they have no history with."
+      },
+      {
+        "candidate_id": "51658c1e175da10f",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G1"
+        ],
+        "reason": "Gold G1. It names ValueError where other candidates say AssertionError; the exception type differs by Django version and I did not verify which is pinned here, but the defect, trigger, and fix are identical."
+      },
+      {
+        "candidate_id": "8ecd181b85874c25",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G2"
+        ],
+        "reason": "Gold G2: the stopNotificiationsText misspelling in the Ember controller and template."
+      },
+      {
+        "candidate_id": "e683894a49b86e17",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G2"
+        ],
+        "reason": "Gold G2: member is typed Optional and is dereferenced unconditionally on every GET, before the optimized_pagination flag is even consulted."
+      },
+      {
+        "candidate_id": "c03592be2f22575d",
+        "classification": "bug_hit",
+        "gold_bug_ids": [
+          "G3"
+        ],
+        "reason": "Gold G3 as the primary finding, correctly attributed to reusing the numeric Paginator logic against a datetime column. The bundled value_from_cursor point is an additional defect on top."
+      },
+      {
+        "candidate_id": "7892ccbe6fe77c74",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Like the other BasePaginator candidates, its subject is the app-wide silent clamp and its asymmetry, not the OptimizedCursorPaginator negative slice that gold G1 names. The is_prev crash is mentioned only as a consequence of the asymmetry."
+      },
+      {
+        "candidate_id": "df22a3c012754267",
+        "classification": "noise",
+        "gold_bug_ids": [],
+        "reason": "Generic 'no tests added' observation. It names no defect and no specific test to write, so it is not actionable on its own; the crash it gestures at is reported properly by other candidates."
+      },
+      {
+        "candidate_id": "09eeaf7730aaa86f",
+        "classification": "valid_suggestion",
+        "gold_bug_ids": [],
+        "reason": "Concrete and well-argued: given the endpoint already requires org:write, the has_global_access check adds no restriction over the existing permission class. Distinct from the gold member-is-None crash on the same line."
+      }
+    ]
+  },
+  "subagent_stats": {
+    "by_type": {},
+    "completed": 0,
+    "failed": 0,
+    "killed": {
+      "parent": 0,
+      "system": 0,
+      "user": 0
+    },
+    "max_depth": 0,
+    "refused": {
+      "budget": 0,
+      "concurrency_limit": 0,
+      "depth_limit": 0
+    },
+    "requested": {
+      "background": 0,
+      "foreground": 0,
+      "unset": 0
+    },
+    "spawned": 0,
+    "spawned_by_subagents": 0,
+    "started_in_background": 0
+  },
+  "subtype": "success",
+  "terminal_reason": "completed",
+  "time_to_request_ms": 126,
+  "total_cost_usd": 0.3959635,
+  "ttft_ms": 40532,
+  "ttft_stream_ms": 1419,
+  "type": "result",
+  "usage": {
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 17900,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "cache_creation_input_tokens": 17900,
+    "cache_read_input_tokens": 43807,
+    "inference_geo": "not_available",
+    "input_tokens": 2,
+    "iterations": [
+      {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 17900,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 17900,
+        "cache_read_input_tokens": 43807,
+        "input_tokens": 2,
+        "output_tokens": 7802,
+        "type": "message"
+      }
+    ],
+    "output_tokens": 7802,
+    "output_tokens_details": {
+      "thinking_tokens": 2850
+    },
+    "server_tool_use": {
+      "web_fetch_requests": 0,
+      "web_search_requests": 0
+    },
+    "service_tier": "standard",
+    "speed": "standard"
+  }
+}
