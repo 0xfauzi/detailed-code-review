@@ -58,9 +58,9 @@ Use this order when sources conflict:
 
 Ask a question when the conflict changes whether code is correct.
 
-## High-Risk Critique Pass
+## High-Risk Review Routing
 
-Run a separate critique pass when the change affects any high-risk area:
+Create explicit coverage ownership when the change affects any high-risk area:
 
 - Authentication, authorization, secrets, privacy, or untrusted input.
 - Migrations, persistent data, destructive operations, or rollback.
@@ -70,11 +70,11 @@ Run a separate critique pass when the change affects any high-risk area:
 - Multiple services, deployment order, feature flags, or mixed versions.
 - Broad cross-cutting behavior or unclear acceptance criteria.
 
-Start the critique pass with a fresh failure hypothesis. Focus on interactions that the first pass may have missed.
+Read [multi-agent-review.md](multi-agent-review.md) when any deep high-risk invariant or multiple independent risk lanes apply.
 
-Use a separate agent only when the user and host policy permit delegation. Otherwise, perform a fresh local pass.
+Use separate agents only when the user and host policy permit delegation. Otherwise, perform separate local lane passes.
 
-Apply the normal finding standard to every critique result. Do not lower the evidence threshold.
+Run the integration challenge after lane synthesis. Apply the normal finding standard to every result.
 
 ## Coverage Ledger
 

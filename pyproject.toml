@@ -1,6 +1,6 @@
 [project]
 name = "detailed-code-review-skill"
-version = "0.1.0"
+version = "0.2.0"
 description = "Validation tools for the detailed-code-review agent skill"
 requires-python = ">=3.11"
 dependencies = []

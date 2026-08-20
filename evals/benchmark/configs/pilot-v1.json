@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "experiment_id": "crb-pilot-v1",
+  "model": "sonnet",
+  "judge_model": "opus",
+  "effort": "high",
+  "replicate_id": "rep-1",
+  "random_seed": 240513565,
+  "conditions": [
+    {
+      "name": "single_no_skill",
+      "skills_enabled": false,
+      "agent_tool_enabled": false
+    },
+    {
+      "name": "single_with_skill",
+      "skills_enabled": true,
+      "agent_tool_enabled": false
+    },
+    {
+      "name": "adaptive_swarm",
+      "skills_enabled": true,
+      "agent_tool_enabled": true
+    },
+    {
+      "name": "forced_swarm",
+      "skills_enabled": true,
+      "agent_tool_enabled": true,
+      "system_instruction": "You must use $detailed-code-review. Spawn independent specialists for relevant risk lanes before synthesis."
+    }
+  ]
+}

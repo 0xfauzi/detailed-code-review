@@ -1,0 +1,35 @@
+{
+  "adaptive_swarm": {
+    "blocking_recognition_recall": 0.5,
+    "canonical_noise_rate": 0.0,
+    "delivery_noise_rate": 0.0,
+    "duplicate_burden": 0.0,
+    "first_round_blocking_recognition_recall": 0.5,
+    "first_round_p1_recall": 1.0,
+    "late_p1_rate": 0.0,
+    "p1_saturation_gap": 0.0,
+    "priority_label_coverage": 1.0,
+    "residual_p1_rate_at_endpoint": 0.0
+  },
+  "comparison": {
+    "delivery_noise_delta": -0.5,
+    "duplicate_burden_delta": -0.25,
+    "endpoint_matched_pair_count": 1,
+    "late_p1_reduction": 0.5,
+    "macro_p1_recall_uplift": 0.5,
+    "paired_review_unit_count": 1,
+    "p1_recall_uplift": 0.5
+  },
+  "single": {
+    "blocking_recognition_recall": 1.0,
+    "canonical_noise_rate": 0.333333,
+    "delivery_noise_rate": 0.5,
+    "duplicate_burden": 0.25,
+    "first_round_blocking_recognition_recall": 0.5,
+    "first_round_p1_recall": 0.5,
+    "late_p1_rate": 0.5,
+    "p1_saturation_gap": 0.5,
+    "priority_label_coverage": 1.0,
+    "residual_p1_rate_at_endpoint": 0.0
+  }
+}

@@ -1,0 +1,824 @@
+{
+  "by_benchmark": {
+    "code-review-bench-offline": {
+      "adaptive_swarm": {
+        "blocking_recognition_recall": 1.0,
+        "bug_hit_count": 5,
+        "canonical_finding_count": 9,
+        "canonical_noise_rate": 0.0,
+        "canonical_precision": 0.555556,
+        "canonical_signal_to_noise": null,
+        "canonical_usefulness": 1.0,
+        "case_count": 2,
+        "condition": "adaptive_swarm",
+        "conditional_late_p1_share": 0.0,
+        "delivery_noise_rate": 0.0,
+        "delivery_precision": 0.555556,
+        "delivery_signal_to_noise": null,
+        "delivery_usefulness": 1.0,
+        "dispositions": {
+          "open": 9
+        },
+        "duplicate_burden": 0.0,
+        "duplicate_count": 0,
+        "endpoint_rounds": {
+          "1": 2
+        },
+        "false_positive_count": 0,
+        "false_positive_rate": 0.0,
+        "final_p1_recall": 1.0,
+        "finding_count": 9,
+        "first_round_blocking_recognition_recall": 1.0,
+        "first_round_p1_hit_count": 4,
+        "first_round_p1_recall": 1.0,
+        "first_round_priority_label_coverage": 1.0,
+        "gold_bug_count": 6,
+        "hit_gold_bug_count": 5,
+        "late_p1_count": 0,
+        "late_p1_rate": 0.0,
+        "macro_first_round_p1_recall": 1.0,
+        "macro_recall": 0.875,
+        "p1_escape_rate": 0.0,
+        "p1_gold_count": 4,
+        "p1_hit_count": 4,
+        "p1_saturation_gap": 0.0,
+        "precision": 0.555556,
+        "priority_label_coverage": 1.0,
+        "raw_finding_count": 9,
+        "recall": 0.833333,
+        "residual_p1_count_at_endpoint": 0,
+        "residual_p1_rate": 0.0,
+        "residual_p1_rate_at_endpoint": 0.0,
+        "resources": {
+          "completed_run_count": 2,
+          "cost_usd": {
+            "observed_run_count": 2,
+            "total": 2.487743
+          },
+          "token_count": {
+            "observed_run_count": 2,
+            "total": 3134601
+          },
+          "tool_call_count": {
+            "observed_run_count": 0,
+            "total": null
+          },
+          "wall_time_seconds": {
+            "observed_run_count": 2,
+            "total": 413.748621
+          }
+        },
+        "review_unit_count": 2,
+        "rounds": {
+          "1": {
+            "canonical_finding_count": 9,
+            "comment_noise_rate": 0.0,
+            "cumulative_gold_bug_count": 5,
+            "cumulative_p1_hit_count": 4,
+            "cumulative_p1_recall": 1.0,
+            "cumulative_recall": 0.833333,
+            "duplicate_burden": 0.0,
+            "duplicate_count": 0,
+            "eligible_review_unit_count": 2,
+            "marginal_signal_to_noise": null,
+            "new_gold_bug_count": 5,
+            "new_p1_count": 4,
+            "noise_count": 0,
+            "raw_finding_count": 9
+          }
+        },
+        "signal_to_noise": null,
+        "tokens_per_unique_gold_hit": 626920.2,
+        "useful_finding_count": 9,
+        "usefulness": 1.0,
+        "valid_suggestion_count": 4
+      },
+      "forced_swarm": {
+        "blocking_recognition_recall": 0.75,
+        "bug_hit_count": 4,
+        "canonical_finding_count": 11,
+        "canonical_noise_rate": 0.090909,
+        "canonical_precision": 0.363636,
+        "canonical_signal_to_noise": 10.0,
+        "canonical_usefulness": 0.909091,
+        "case_count": 2,
+        "condition": "forced_swarm",
+        "conditional_late_p1_share": 0.0,
+        "delivery_noise_rate": 0.090909,
+        "delivery_precision": 0.363636,
+        "delivery_signal_to_noise": 10.0,
+        "delivery_usefulness": 0.909091,
+        "dispositions": {
+          "open": 11
+        },
+        "duplicate_burden": 0.0,
+        "duplicate_count": 0,
+        "endpoint_rounds": {
+          "1": 2
+        },
+        "false_positive_count": 1,
+        "false_positive_rate": 0.090909,
+        "final_p1_recall": 1.0,
+        "finding_count": 11,
+        "first_round_blocking_recognition_recall": 0.75,
+        "first_round_p1_hit_count": 4,
+        "first_round_p1_recall": 1.0,
+        "first_round_priority_label_coverage": 1.0,
+        "gold_bug_count": 6,
+        "hit_gold_bug_count": 4,
+        "late_p1_count": 0,
+        "late_p1_rate": 0.0,
+        "macro_first_round_p1_recall": 1.0,
+        "macro_recall": 0.625,
+        "p1_escape_rate": 0.0,
+        "p1_gold_count": 4,
+        "p1_hit_count": 4,
+        "p1_saturation_gap": 0.0,
+        "precision": 0.363636,
+        "priority_label_coverage": 1.0,
+        "raw_finding_count": 11,
+        "recall": 0.666667,
+        "residual_p1_count_at_endpoint": 0,
+        "residual_p1_rate": 0.0,
+        "residual_p1_rate_at_endpoint": 0.0,
+        "resources": {
+          "completed_run_count": 2,
+          "cost_usd": {
+            "observed_run_count": 2,
+            "total": 8.287826
+          },
+          "token_count": {
+            "observed_run_count": 2,
+            "total": 12860843
+          },
+          "tool_call_count": {
+            "observed_run_count": 0,
+            "total": null
+          },
+          "wall_time_seconds": {
+            "observed_run_count": 2,
+            "total": 1129.641876
+          }
+        },
+        "review_unit_count": 2,
+        "rounds": {
+          "1": {
+            "canonical_finding_count": 11,
+            "comment_noise_rate": 0.090909,
+            "cumulative_gold_bug_count": 4,
+            "cumulative_p1_hit_count": 4,
+            "cumulative_p1_recall": 1.0,
+            "cumulative_recall": 0.666667,
+            "duplicate_burden": 0.0,
+            "duplicate_count": 0,
+            "eligible_review_unit_count": 2,
+            "marginal_signal_to_noise": 10.0,
+            "new_gold_bug_count": 4,
+            "new_p1_count": 4,
+            "noise_count": 1,
+            "raw_finding_count": 11
+          }
+        },
+        "signal_to_noise": 10.0,
+        "tokens_per_unique_gold_hit": 3215210.75,
+        "useful_finding_count": 10,
+        "usefulness": 0.909091,
+        "valid_suggestion_count": 6
+      },
+      "single_no_skill": {
+        "blocking_recognition_recall": 0.75,
+        "bug_hit_count": 4,
+        "canonical_finding_count": 11,
+        "canonical_noise_rate": 0.090909,
+        "canonical_precision": 0.363636,
+        "canonical_signal_to_noise": 10.0,
+        "canonical_usefulness": 0.909091,
+        "case_count": 2,
+        "condition": "single_no_skill",
+        "conditional_late_p1_share": 0.0,
+        "delivery_noise_rate": 0.090909,
+        "delivery_precision": 0.363636,
+        "delivery_signal_to_noise": 10.0,
+        "delivery_usefulness": 0.909091,
+        "dispositions": {
+          "open": 11
+        },
+        "duplicate_burden": 0.0,
+        "duplicate_count": 0,
+        "endpoint_rounds": {
+          "1": 2
+        },
+        "false_positive_count": 1,
+        "false_positive_rate": 0.090909,
+        "final_p1_recall": 1.0,
+        "finding_count": 11,
+        "first_round_blocking_recognition_recall": 0.75,
+        "first_round_p1_hit_count": 4,
+        "first_round_p1_recall": 1.0,
+        "first_round_priority_label_coverage": 1.0,
+        "gold_bug_count": 6,
+        "hit_gold_bug_count": 4,
+        "late_p1_count": 0,
+        "late_p1_rate": 0.0,
+        "macro_first_round_p1_recall": 1.0,
+        "macro_recall": 0.625,
+        "p1_escape_rate": 0.0,
+        "p1_gold_count": 4,
+        "p1_hit_count": 4,
+        "p1_saturation_gap": 0.0,
+        "precision": 0.363636,
+        "priority_label_coverage": 1.0,
+        "raw_finding_count": 11,
+        "recall": 0.666667,
+        "residual_p1_count_at_endpoint": 0,
+        "residual_p1_rate": 0.0,
+        "residual_p1_rate_at_endpoint": 0.0,
+        "resources": {
+          "completed_run_count": 2,
+          "cost_usd": {
+            "observed_run_count": 2,
+            "total": 2.23506
+          },
+          "token_count": {
+            "observed_run_count": 2,
+            "total": 2606959
+          },
+          "tool_call_count": {
+            "observed_run_count": 0,
+            "total": null
+          },
+          "wall_time_seconds": {
+            "observed_run_count": 2,
+            "total": 429.258347
+          }
+        },
+        "review_unit_count": 2,
+        "rounds": {
+          "1": {
+            "canonical_finding_count": 11,
+            "comment_noise_rate": 0.090909,
+            "cumulative_gold_bug_count": 4,
+            "cumulative_p1_hit_count": 4,
+            "cumulative_p1_recall": 1.0,
+            "cumulative_recall": 0.666667,
+            "duplicate_burden": 0.0,
+            "duplicate_count": 0,
+            "eligible_review_unit_count": 2,
+            "marginal_signal_to_noise": 10.0,
+            "new_gold_bug_count": 4,
+            "new_p1_count": 4,
+            "noise_count": 1,
+            "raw_finding_count": 11
+          }
+        },
+        "signal_to_noise": 10.0,
+        "tokens_per_unique_gold_hit": 651739.75,
+        "useful_finding_count": 10,
+        "usefulness": 0.909091,
+        "valid_suggestion_count": 6
+      },
+      "single_with_skill": {
+        "blocking_recognition_recall": 0.5,
+        "bug_hit_count": 3,
+        "canonical_finding_count": 7,
+        "canonical_noise_rate": 0.0,
+        "canonical_precision": 0.428571,
+        "canonical_signal_to_noise": null,
+        "canonical_usefulness": 1.0,
+        "case_count": 2,
+        "condition": "single_with_skill",
+        "conditional_late_p1_share": 0.0,
+        "delivery_noise_rate": 0.0,
+        "delivery_precision": 0.428571,
+        "delivery_signal_to_noise": null,
+        "delivery_usefulness": 1.0,
+        "dispositions": {
+          "open": 7
+        },
+        "duplicate_burden": 0.0,
+        "duplicate_count": 0,
+        "endpoint_rounds": {
+          "1": 2
+        },
+        "false_positive_count": 0,
+        "false_positive_rate": 0.0,
+        "final_p1_recall": 0.5,
+        "finding_count": 7,
+        "first_round_blocking_recognition_recall": 0.5,
+        "first_round_p1_hit_count": 2,
+        "first_round_p1_recall": 0.5,
+        "first_round_priority_label_coverage": 1.0,
+        "gold_bug_count": 6,
+        "hit_gold_bug_count": 3,
+        "late_p1_count": 0,
+        "late_p1_rate": 0.0,
+        "macro_first_round_p1_recall": 0.666667,
+        "macro_recall": 0.625,
+        "p1_escape_rate": 0.5,
+        "p1_gold_count": 4,
+        "p1_hit_count": 2,
+        "p1_saturation_gap": 0.0,
+        "precision": 0.428571,
+        "priority_label_coverage": 1.0,
+        "raw_finding_count": 7,
+        "recall": 0.5,
+        "residual_p1_count_at_endpoint": 2,
+        "residual_p1_rate": 0.5,
+        "residual_p1_rate_at_endpoint": 0.5,
+        "resources": {
+          "completed_run_count": 2,
+          "cost_usd": {
+            "observed_run_count": 2,
+            "total": 2.743811
+          },
+          "token_count": {
+            "observed_run_count": 2,
+            "total": 4408594
+          },
+          "tool_call_count": {
+            "observed_run_count": 0,
+            "total": null
+          },
+          "wall_time_seconds": {
+            "observed_run_count": 2,
+            "total": 420.952841
+          }
+        },
+        "review_unit_count": 2,
+        "rounds": {
+          "1": {
+            "canonical_finding_count": 7,
+            "comment_noise_rate": 0.0,
+            "cumulative_gold_bug_count": 3,
+            "cumulative_p1_hit_count": 2,
+            "cumulative_p1_recall": 0.5,
+            "cumulative_recall": 0.5,
+            "duplicate_burden": 0.0,
+            "duplicate_count": 0,
+            "eligible_review_unit_count": 2,
+            "marginal_signal_to_noise": null,
+            "new_gold_bug_count": 3,
+            "new_p1_count": 2,
+            "noise_count": 0,
+            "raw_finding_count": 7
+          }
+        },
+        "signal_to_noise": null,
+        "tokens_per_unique_gold_hit": 1469531.333333,
+        "useful_finding_count": 7,
+        "usefulness": 1.0,
+        "valid_suggestion_count": 4
+      }
+    }
+  },
+  "by_condition": {
+    "adaptive_swarm": {
+      "blocking_recognition_recall": 1.0,
+      "bug_hit_count": 5,
+      "canonical_finding_count": 9,
+      "canonical_noise_rate": 0.0,
+      "canonical_precision": 0.555556,
+      "canonical_signal_to_noise": null,
+      "canonical_usefulness": 1.0,
+      "case_count": 2,
+      "condition": "adaptive_swarm",
+      "conditional_late_p1_share": 0.0,
+      "delivery_noise_rate": 0.0,
+      "delivery_precision": 0.555556,
+      "delivery_signal_to_noise": null,
+      "delivery_usefulness": 1.0,
+      "dispositions": {
+        "open": 9
+      },
+      "duplicate_burden": 0.0,
+      "duplicate_count": 0,
+      "endpoint_rounds": {
+        "1": 2
+      },
+      "false_positive_count": 0,
+      "false_positive_rate": 0.0,
+      "final_p1_recall": 1.0,
+      "finding_count": 9,
+      "first_round_blocking_recognition_recall": 1.0,
+      "first_round_p1_hit_count": 4,
+      "first_round_p1_recall": 1.0,
+      "first_round_priority_label_coverage": 1.0,
+      "gold_bug_count": 6,
+      "hit_gold_bug_count": 5,
+      "late_p1_count": 0,
+      "late_p1_rate": 0.0,
+      "macro_first_round_p1_recall": 1.0,
+      "macro_recall": 0.875,
+      "p1_escape_rate": 0.0,
+      "p1_gold_count": 4,
+      "p1_hit_count": 4,
+      "p1_saturation_gap": 0.0,
+      "precision": 0.555556,
+      "priority_label_coverage": 1.0,
+      "raw_finding_count": 9,
+      "recall": 0.833333,
+      "residual_p1_count_at_endpoint": 0,
+      "residual_p1_rate": 0.0,
+      "residual_p1_rate_at_endpoint": 0.0,
+      "resources": {
+        "completed_run_count": 2,
+        "cost_usd": {
+          "observed_run_count": 2,
+          "total": 2.487743
+        },
+        "token_count": {
+          "observed_run_count": 2,
+          "total": 3134601
+        },
+        "tool_call_count": {
+          "observed_run_count": 0,
+          "total": null
+        },
+        "wall_time_seconds": {
+          "observed_run_count": 2,
+          "total": 413.748621
+        }
+      },
+      "review_unit_count": 2,
+      "rounds": {
+        "1": {
+          "canonical_finding_count": 9,
+          "comment_noise_rate": 0.0,
+          "cumulative_gold_bug_count": 5,
+          "cumulative_p1_hit_count": 4,
+          "cumulative_p1_recall": 1.0,
+          "cumulative_recall": 0.833333,
+          "duplicate_burden": 0.0,
+          "duplicate_count": 0,
+          "eligible_review_unit_count": 2,
+          "marginal_signal_to_noise": null,
+          "new_gold_bug_count": 5,
+          "new_p1_count": 4,
+          "noise_count": 0,
+          "raw_finding_count": 9
+        }
+      },
+      "signal_to_noise": null,
+      "tokens_per_unique_gold_hit": 626920.2,
+      "useful_finding_count": 9,
+      "usefulness": 1.0,
+      "valid_suggestion_count": 4
+    },
+    "forced_swarm": {
+      "blocking_recognition_recall": 0.75,
+      "bug_hit_count": 4,
+      "canonical_finding_count": 11,
+      "canonical_noise_rate": 0.090909,
+      "canonical_precision": 0.363636,
+      "canonical_signal_to_noise": 10.0,
+      "canonical_usefulness": 0.909091,
+      "case_count": 2,
+      "condition": "forced_swarm",
+      "conditional_late_p1_share": 0.0,
+      "delivery_noise_rate": 0.090909,
+      "delivery_precision": 0.363636,
+      "delivery_signal_to_noise": 10.0,
+      "delivery_usefulness": 0.909091,
+      "dispositions": {
+        "open": 11
+      },
+      "duplicate_burden": 0.0,
+      "duplicate_count": 0,
+      "endpoint_rounds": {
+        "1": 2
+      },
+      "false_positive_count": 1,
+      "false_positive_rate": 0.090909,
+      "final_p1_recall": 1.0,
+      "finding_count": 11,
+      "first_round_blocking_recognition_recall": 0.75,
+      "first_round_p1_hit_count": 4,
+      "first_round_p1_recall": 1.0,
+      "first_round_priority_label_coverage": 1.0,
+      "gold_bug_count": 6,
+      "hit_gold_bug_count": 4,
+      "late_p1_count": 0,
+      "late_p1_rate": 0.0,
+      "macro_first_round_p1_recall": 1.0,
+      "macro_recall": 0.625,
+      "p1_escape_rate": 0.0,
+      "p1_gold_count": 4,
+      "p1_hit_count": 4,
+      "p1_saturation_gap": 0.0,
+      "precision": 0.363636,
+      "priority_label_coverage": 1.0,
+      "raw_finding_count": 11,
+      "recall": 0.666667,
+      "residual_p1_count_at_endpoint": 0,
+      "residual_p1_rate": 0.0,
+      "residual_p1_rate_at_endpoint": 0.0,
+      "resources": {
+        "completed_run_count": 2,
+        "cost_usd": {
+          "observed_run_count": 2,
+          "total": 8.287826
+        },
+        "token_count": {
+          "observed_run_count": 2,
+          "total": 12860843
+        },
+        "tool_call_count": {
+          "observed_run_count": 0,
+          "total": null
+        },
+        "wall_time_seconds": {
+          "observed_run_count": 2,
+          "total": 1129.641876
+        }
+      },
+      "review_unit_count": 2,
+      "rounds": {
+        "1": {
+          "canonical_finding_count": 11,
+          "comment_noise_rate": 0.090909,
+          "cumulative_gold_bug_count": 4,
+          "cumulative_p1_hit_count": 4,
+          "cumulative_p1_recall": 1.0,
+          "cumulative_recall": 0.666667,
+          "duplicate_burden": 0.0,
+          "duplicate_count": 0,
+          "eligible_review_unit_count": 2,
+          "marginal_signal_to_noise": 10.0,
+          "new_gold_bug_count": 4,
+          "new_p1_count": 4,
+          "noise_count": 1,
+          "raw_finding_count": 11
+        }
+      },
+      "signal_to_noise": 10.0,
+      "tokens_per_unique_gold_hit": 3215210.75,
+      "useful_finding_count": 10,
+      "usefulness": 0.909091,
+      "valid_suggestion_count": 6
+    },
+    "single_no_skill": {
+      "blocking_recognition_recall": 0.75,
+      "bug_hit_count": 4,
+      "canonical_finding_count": 11,
+      "canonical_noise_rate": 0.090909,
+      "canonical_precision": 0.363636,
+      "canonical_signal_to_noise": 10.0,
+      "canonical_usefulness": 0.909091,
+      "case_count": 2,
+      "condition": "single_no_skill",
+      "conditional_late_p1_share": 0.0,
+      "delivery_noise_rate": 0.090909,
+      "delivery_precision": 0.363636,
+      "delivery_signal_to_noise": 10.0,
+      "delivery_usefulness": 0.909091,
+      "dispositions": {
+        "open": 11
+      },
+      "duplicate_burden": 0.0,
+      "duplicate_count": 0,
+      "endpoint_rounds": {
+        "1": 2
+      },
+      "false_positive_count": 1,
+      "false_positive_rate": 0.090909,
+      "final_p1_recall": 1.0,
+      "finding_count": 11,
+      "first_round_blocking_recognition_recall": 0.75,
+      "first_round_p1_hit_count": 4,
+      "first_round_p1_recall": 1.0,
+      "first_round_priority_label_coverage": 1.0,
+      "gold_bug_count": 6,
+      "hit_gold_bug_count": 4,
+      "late_p1_count": 0,
+      "late_p1_rate": 0.0,
+      "macro_first_round_p1_recall": 1.0,
+      "macro_recall": 0.625,
+      "p1_escape_rate": 0.0,
+      "p1_gold_count": 4,
+      "p1_hit_count": 4,
+      "p1_saturation_gap": 0.0,
+      "precision": 0.363636,
+      "priority_label_coverage": 1.0,
+      "raw_finding_count": 11,
+      "recall": 0.666667,
+      "residual_p1_count_at_endpoint": 0,
+      "residual_p1_rate": 0.0,
+      "residual_p1_rate_at_endpoint": 0.0,
+      "resources": {
+        "completed_run_count": 2,
+        "cost_usd": {
+          "observed_run_count": 2,
+          "total": 2.23506
+        },
+        "token_count": {
+          "observed_run_count": 2,
+          "total": 2606959
+        },
+        "tool_call_count": {
+          "observed_run_count": 0,
+          "total": null
+        },
+        "wall_time_seconds": {
+          "observed_run_count": 2,
+          "total": 429.258347
+        }
+      },
+      "review_unit_count": 2,
+      "rounds": {
+        "1": {
+          "canonical_finding_count": 11,
+          "comment_noise_rate": 0.090909,
+          "cumulative_gold_bug_count": 4,
+          "cumulative_p1_hit_count": 4,
+          "cumulative_p1_recall": 1.0,
+          "cumulative_recall": 0.666667,
+          "duplicate_burden": 0.0,
+          "duplicate_count": 0,
+          "eligible_review_unit_count": 2,
+          "marginal_signal_to_noise": 10.0,
+          "new_gold_bug_count": 4,
+          "new_p1_count": 4,
+          "noise_count": 1,
+          "raw_finding_count": 11
+        }
+      },
+      "signal_to_noise": 10.0,
+      "tokens_per_unique_gold_hit": 651739.75,
+      "useful_finding_count": 10,
+      "usefulness": 0.909091,
+      "valid_suggestion_count": 6
+    },
+    "single_with_skill": {
+      "blocking_recognition_recall": 0.5,
+      "bug_hit_count": 3,
+      "canonical_finding_count": 7,
+      "canonical_noise_rate": 0.0,
+      "canonical_precision": 0.428571,
+      "canonical_signal_to_noise": null,
+      "canonical_usefulness": 1.0,
+      "case_count": 2,
+      "condition": "single_with_skill",
+      "conditional_late_p1_share": 0.0,
+      "delivery_noise_rate": 0.0,
+      "delivery_precision": 0.428571,
+      "delivery_signal_to_noise": null,
+      "delivery_usefulness": 1.0,
+      "dispositions": {
+        "open": 7
+      },
+      "duplicate_burden": 0.0,
+      "duplicate_count": 0,
+      "endpoint_rounds": {
+        "1": 2
+      },
+      "false_positive_count": 0,
+      "false_positive_rate": 0.0,
+      "final_p1_recall": 0.5,
+      "finding_count": 7,
+      "first_round_blocking_recognition_recall": 0.5,
+      "first_round_p1_hit_count": 2,
+      "first_round_p1_recall": 0.5,
+      "first_round_priority_label_coverage": 1.0,
+      "gold_bug_count": 6,
+      "hit_gold_bug_count": 3,
+      "late_p1_count": 0,
+      "late_p1_rate": 0.0,
+      "macro_first_round_p1_recall": 0.666667,
+      "macro_recall": 0.625,
+      "p1_escape_rate": 0.5,
+      "p1_gold_count": 4,
+      "p1_hit_count": 2,
+      "p1_saturation_gap": 0.0,
+      "precision": 0.428571,
+      "priority_label_coverage": 1.0,
+      "raw_finding_count": 7,
+      "recall": 0.5,
+      "residual_p1_count_at_endpoint": 2,
+      "residual_p1_rate": 0.5,
+      "residual_p1_rate_at_endpoint": 0.5,
+      "resources": {
+        "completed_run_count": 2,
+        "cost_usd": {
+          "observed_run_count": 2,
+          "total": 2.743811
+        },
+        "token_count": {
+          "observed_run_count": 2,
+          "total": 4408594
+        },
+        "tool_call_count": {
+          "observed_run_count": 0,
+          "total": null
+        },
+        "wall_time_seconds": {
+          "observed_run_count": 2,
+          "total": 420.952841
+        }
+      },
+      "review_unit_count": 2,
+      "rounds": {
+        "1": {
+          "canonical_finding_count": 7,
+          "comment_noise_rate": 0.0,
+          "cumulative_gold_bug_count": 3,
+          "cumulative_p1_hit_count": 2,
+          "cumulative_p1_recall": 0.5,
+          "cumulative_recall": 0.5,
+          "duplicate_burden": 0.0,
+          "duplicate_count": 0,
+          "eligible_review_unit_count": 2,
+          "marginal_signal_to_noise": null,
+          "new_gold_bug_count": 3,
+          "new_p1_count": 2,
+          "noise_count": 0,
+          "raw_finding_count": 7
+        }
+      },
+      "signal_to_noise": null,
+      "tokens_per_unique_gold_hit": 1469531.333333,
+      "useful_finding_count": 7,
+      "usefulness": 1.0,
+      "valid_suggestion_count": 4
+    }
+  },
+  "case_provenance": {
+    "crb-discourse-002": {
+      "base_revision": "56abd247e1829cb6de82dfcc8ce04deb5f0d1e91",
+      "diff_sha256": "c731663ae4f39eb1adaef19ea9b34b591a62dd93bbd14d20bcd65ad121c3ae41",
+      "repository": "ai-code-review-evaluation/discourse-graphite",
+      "target_revision": "6669a2d94d76eea3b99b8c476d12b1eb66726b07"
+    },
+    "crb-sentry-001": {
+      "base_revision": "74618671bff8114fcec8fe77c6260c9a2bc2864a",
+      "diff_sha256": "4b7ba22d22438ddcf602d77703c3bc9c602ef5ecc466f54d096a3c0a960bc288",
+      "repository": "ai-code-review-evaluation/sentry-greptile",
+      "target_revision": "8ab88145113dd23a930e23b9cbbcf8b30e4c0b17"
+    }
+  },
+  "condition_comparison": {
+    "control": "single_no_skill",
+    "control_only_review_unit_count": 0,
+    "cost_ratio": 3.7081,
+    "delivery_noise_delta": 0.0,
+    "duplicate_burden_delta": 0.0,
+    "endpoint_matched_pair_count": 2,
+    "late_p1_reduction": 0.0,
+    "macro_p1_recall_uplift": 0.0,
+    "metric_deltas": {
+      "blocking_recognition_recall": 0.0,
+      "canonical_noise_rate": 0.0,
+      "canonical_precision": 0.0,
+      "canonical_usefulness": 0.0,
+      "delivery_noise_rate": 0.0,
+      "delivery_precision": 0.0,
+      "delivery_usefulness": 0.0,
+      "duplicate_burden": 0.0,
+      "first_round_blocking_recognition_recall": 0.0,
+      "first_round_p1_recall": 0.0,
+      "late_p1_rate": 0.0,
+      "macro_first_round_p1_recall": 0.0,
+      "macro_recall": 0.0,
+      "p1_escape_rate": 0.0,
+      "p1_saturation_gap": 0.0,
+      "recall": 0.0,
+      "residual_p1_rate_at_endpoint": 0.0,
+      "tokens_per_unique_gold_hit": 2563471.0
+    },
+    "noise_delta": 0.0,
+    "p1_recall_uplift": 0.0,
+    "paired_case_count": 2,
+    "paired_review_unit_count": 2,
+    "per_pair": [
+      {
+        "case_id": "crb-discourse-002",
+        "control_endpoint": 1,
+        "first_round_p1_recall_uplift": 0.0,
+        "replicate_id": "rep-1",
+        "treatment_endpoint": 1
+      },
+      {
+        "case_id": "crb-sentry-001",
+        "control_endpoint": 1,
+        "first_round_p1_recall_uplift": 0.0,
+        "replicate_id": "rep-1",
+        "treatment_endpoint": 1
+      }
+    ],
+    "resource_ratios": {
+      "cost_usd": 3.7081,
+      "token_count": 4.933274,
+      "tool_call_count": null,
+      "wall_time_seconds": 2.631613
+    },
+    "token_ratio": 4.933274,
+    "treatment": "forced_swarm",
+    "treatment_only_review_unit_count": 0
+  },
+  "run_mode": "explicit",
+  "run_statuses": {
+    "complete": 8,
+    "failed": 0,
+    "not_run": 0
+  },
+  "schema_version": 3
+}

@@ -10,11 +10,11 @@ Here are the available measurements, ordered by how closely they approach the go
 
 The paired design in `research/benchmark-design.md` compares the same agent with and without the skill.
 
-It measures recall, precision, usefulness, false positives, signal-to-noise, severity, duplicates, time, tokens, and cost.
+It measures first-round P1 recall, late discovery, canonical precision, delivery noise, duplicates, time, tokens, and cost.
 
 This is the closest available measurement. It still depends on finite gold findings and fallible judges.
 
-No paired public run has completed. `research/results.md` records that missing result.
+A two-case paired pilot has completed. `research/results.md` records its results and limits.
 
 ## 2. Can a reported defect be resolved and tested?
 
@@ -34,6 +34,8 @@ The validator runs the evaluator and compares every expected aggregate value.
 
 This proves the fixed example is scored correctly. It does not prove the labels or review process are good.
 
+A second synthetic fixture checks multi-round P1 discovery and compares single-agent and adaptive-swarm conditions.
+
 ## 4. Does the skill fire for the right task?
 
     claude plugin eval .
@@ -47,5 +49,7 @@ Discovery decides whether the procedure reaches the user. It says nothing about 
 ## Publication rule
 
 Publish raw reviewer outputs, judge outputs, configuration, parser failures, and aggregate reports together.
+
+Publish the run manifest. It proves which case, revision, condition, replicate, and round actually ran.
 
 Do not present smoke values as model results. Do not drop failed runs from either paired condition.
