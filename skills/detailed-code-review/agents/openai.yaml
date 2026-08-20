@@ -1,0 +1,4 @@
+interface:
+  display_name: "Detailed Code Review"
+  short_description: "Find high-confidence defects in code changes"
+  default_prompt: "Use $detailed-code-review to review this change, report evidence-backed findings, show coverage, and give a merge verdict."

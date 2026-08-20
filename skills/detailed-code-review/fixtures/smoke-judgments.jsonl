@@ -1,0 +1,4 @@
+{"case_id":"crb-smoke-001","finding_id":"F1","classification":"bug_hit","gold_bug_ids":["G1"],"disposition":"accepted","reason":"The finding identifies rejection of equal endpoints."}
+{"case_id":"crb-smoke-001","finding_id":"F2","classification":"noise","gold_bug_ids":[],"disposition":"rejected","reason":"The claimed overflow path does not exist in this fixture."}
+{"case_id":"crb-smoke-001","finding_id":"F3","classification":"valid_suggestion","gold_bug_ids":[],"disposition":"disputed","reason":"The suggestion improves diagnostics but does not match a gold defect."}
+{"case_id":"ccrab-smoke-001","finding_id":"F1","classification":"bug_hit","gold_bug_ids":["G1"],"disposition":"fixed","reason":"The finding identifies the duplicate delivery sequence."}

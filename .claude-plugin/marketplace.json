@@ -1,0 +1,21 @@
+{
+  "name": "detailed-code-review",
+  "owner": {
+    "name": "0xfauzi"
+  },
+  "metadata": {
+    "description": "Evidence-backed code review with measurable signal and explicit merge decisions",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "detailed-code-review",
+      "description": "Review diffs, commits, and pull requests for concrete regressions. Includes risk critique, coverage, merge verdicts, and evaluation tools.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/detailed-code-review"
+      ]
+    }
+  ]
+}
