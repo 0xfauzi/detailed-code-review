@@ -9,6 +9,8 @@ Use this reference to inspect non-trivial changes. Select checks that match the 
 - Does the diff include temporary, generated, debug, or unrelated content?
 - Does the change depend on an unstated deployment order or companion change?
 - Is the change small enough to reason about? If not, identify the risky boundary.
+- Does a candidate finding require work outside the original ask?
+- Is that work a required companion fix, or only a plausible improvement?
 
 ## Correctness and Contracts
 
@@ -75,6 +77,16 @@ Apply these checks when the change crosses a trust boundary or handles sensitive
 - Does the fix create a new failure class under load or mixed versions?
 - Does a local simplification shift complexity into another component?
 
+## Review Claim Discipline
+
+- Can one root cause explain several proposed comments? If yes, keep one finding.
+- Did an agent convert a hedge or hypothetical concern into a claimed defect?
+- Did conversational agreement replace a code path, contract, test, or measurement?
+- Did a confident rebuttal suppress evidence-backed dissent?
+- Does the candidate repair the root cause, or only reapply state after the destructive operation?
+- Does the proposed fix direction add an unrelated feature, refactor, or hardening change?
+- Can the reviewer state why the smallest in-scope fix removes the demonstrated failure precondition?
+
 ## Candidate Finding Verification
 
 Before reporting a candidate, answer these questions:
@@ -85,5 +97,7 @@ Before reporting a candidate, answer these questions:
 4. What repository evidence confirms the path?
 5. Does existing validation, typing, configuration, or framework behavior prevent it?
 6. Can the author resolve it without expanding the review into unrelated work?
+7. Is its scope `IN_SCOPE`, `REQUIRED_COMPANION`, `OUT_OF_SCOPE`, or `UNCLEAR_INTENT`?
+8. Did any disagreement change because of new evidence rather than confidence or repetition?
 
 If any answer remains speculative, gather more evidence or downgrade it to a question.

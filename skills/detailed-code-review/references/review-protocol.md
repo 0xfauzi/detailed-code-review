@@ -72,6 +72,8 @@ Create explicit coverage ownership when the change affects any high-risk area:
 
 Read [multi-agent-review.md](multi-agent-review.md) when any deep high-risk invariant or multiple independent risk lanes apply.
 
+Read [adversarial-audit.md](adversarial-audit.md) when candidate severity, conflict, interaction, or weak evidence triggers its gate.
+
 Use separate agents only when the user and host policy permit delegation. Otherwise, perform separate local lane passes.
 
 Run the integration challenge after lane synthesis. Apply the normal finding standard to every result.
@@ -85,9 +87,12 @@ Keep the ledger small. Include only areas that affect the change.
 | Correctness | Reviewed | Traced changed input through named caller and consumer. |
 | Failure recovery | Finding | `F2` shows a partial write after timeout. |
 | Concurrency | Not relevant | The changed path has no shared or asynchronous state. |
+| Review audit | Reviewed | Independent critic resolved every triggered candidate with repository evidence. |
 | Runtime validation | Not covered | The required service was unavailable. |
 
 Do not use `Reviewed` without naming evidence. Use `Not covered` when evidence is unavailable.
+
+For `Review audit`, state `Not relevant` when the adversarial gate did not trigger. State `Not covered` when a required audit could not run.
 
 ## Disposition Ledger
 

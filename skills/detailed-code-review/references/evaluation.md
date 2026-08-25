@@ -114,12 +114,47 @@ Use `--baseline-report <report.json>` to show metric deltas. The evaluator does 
 ## Evaluation Process
 
 1. Run the synthetic smoke fixtures.
-2. Confirm that the generated report matches `fixtures/smoke-expected.json`.
+2. Compare the legacy aggregate fields with `fixtures/smoke-expected.json`:
+
+   ```bash
+   uv run python scripts/evaluate_reviews.py \
+     --cases fixtures/cr-bench-smoke.jsonl fixtures/c-crab-smoke.jsonl \
+     --judgments fixtures/smoke-judgments.jsonl \
+     | jq '.aggregate | {case_count, finding_count, false_positive_count, false_positive_rate, gold_bug_count, hit_gold_bug_count, precision, recall, signal_to_noise, useful_finding_count, usefulness}'
+   ```
+
+   The full evaluator report uses a newer schema and contains additional sections.
 3. Normalize licensed benchmark exports to the fixture format.
 4. Run the same reviewer configuration more than once when nondeterminism matters.
 5. Record the model, prompt or skill revision, tools, repository state, and runtime limits.
 6. Compare metrics and inspect false positives manually.
 7. Keep behavioral c-CRAB pass results beside comment-quality metrics.
+8. Inspect reviewer-critic traces when a condition uses structured adversarial audit.
+
+## Adversarial Audit Trace
+
+Store audit traces separately from finding judgments. The evaluator does not infer protocol quality from final comments alone.
+
+Record these fields for every audited candidate:
+
+- `case_id`, `run_id`, and stable candidate identifier.
+- Source lane and candidate priority before audit.
+- Critic verdict and cited evidence.
+- Scope status.
+- Reviewer response and evidence change.
+- Final lifecycle state.
+- Audit mode: `independent` or `local`.
+- Exchange count and stopping reason.
+
+Manually classify converged traces as one of:
+
+- `evidence_grounded`: Evidence supports the final state.
+- `false_consensus`: Agents agreed without enough evidence.
+- `scope_expansion`: The process promoted unrelated work into a finding.
+- `protocol_violation`: The artifact changed, context differed, or disagreement ended without the required response.
+- `unresolved`: The audit stopped without a supported result.
+
+Report counts and denominators for every trace class. Do not label agreement as grounded without inspecting its evidence.
 
 ## Multi-Round Comparison
 
@@ -133,9 +168,13 @@ Compare these conditions when measuring multi-agent value:
 2. One agent with fresh repeated passes and a matched resource budget.
 3. Fixed-theme specialist lanes.
 4. Risk-adaptive specialist lanes.
-5. Hybrid theme and component lanes.
+5. Risk-adaptive lanes followed by an unconstrained critic.
+6. Risk-adaptive lanes followed by the structured adversarial audit.
+7. Hybrid theme and component lanes followed by the structured adversarial audit.
 
 The repeated single-agent condition separates architecture effects from additional compute.
+
+The unconstrained-critic condition separates interaction from the structured disagreement contract.
 
 Use gold priority for severity recall. Use predicted priority only for severity calibration.
 
@@ -146,3 +185,7 @@ Score each replicate before aggregation. Compare only completed case-replicate p
 Report excluded pairs and failed runs. Use measured run resources for cost comparisons.
 
 Do not tune only for recall. Increased recall can reduce usefulness and increase noise.
+
+Also compare false-consensus, scope-expansion, protocol-violation, and unresolved trace counts.
+
+Treat published benchmark results as motivation, not pass thresholds. Re-measure behavior on the target model, toolset, and repository mix.

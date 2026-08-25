@@ -4,6 +4,8 @@ Use this protocol when a change has multiple independent risk lanes or important
 
 The protocol also works as separate local passes when delegation is unavailable.
 
+Use independent lanes for discovery. Use structured adversarial audit for candidate-review verification.
+
 ## First classify repeated-round findings
 
 Record the exact base and head revisions for every review round.
@@ -26,7 +28,7 @@ The coordinator owns scope, routing, synthesis, and the final response.
 Before delegation, build an immutable review brief with:
 
 - Exact base, head, and merge-base revisions.
-- User intent, acceptance criteria, and important invariants.
+- The original user ask verbatim, plus acceptance criteria and important invariants.
 - Repository instructions and allowed validation commands.
 - Changed files, components, callers, and consumers.
 - Data, state, trust, public contract, and deployment boundaries.
@@ -138,6 +140,12 @@ For confirmed blocking candidates, record one confirmation state:
 
 Do not describe a local second pass as independent confirmation.
 
+For every candidate entering adversarial audit, also record:
+
+- Critic verdict: `AGREE`, `DISAGREE_EVIDENCE`, or `DISAGREE_CONCERN`.
+- Scope status: `IN_SCOPE`, `REQUIRED_COMPANION`, `OUT_OF_SCOPE`, or `UNCLEAR_INTENT`.
+- Reviewer response and the evidence that changed or preserved its lifecycle state.
+
 ## Synthesis
 
 The coordinator performs synthesis after independent lane work.
@@ -146,11 +154,15 @@ The coordinator performs synthesis after independent lane work.
 2. Deduplicate findings by root cause, trigger, and observable outcome.
 3. Confirm every `P0` and `P1` through an independent reviewer or coordinator reproduction.
 4. Resolve disagreements through a focused check or mark them disputed.
-5. Inspect interactions between lanes.
-6. Update the coverage and finding ledgers.
-7. Produce one set of findings and one merge verdict.
+5. Apply the trigger gate in [adversarial-audit.md](adversarial-audit.md).
+6. Run the structured audit before publication when the gate triggers.
+7. Inspect interactions between lanes.
+8. Update the coverage, audit, and finding ledgers.
+9. Produce one set of findings and one merge verdict.
 
 Do not resolve disagreements through majority vote.
+
+Do not treat reviewer-critic convergence as evidence. Each surviving finding must satisfy the normal finding standard.
 
 ## Integration challenge
 
@@ -162,7 +174,9 @@ Call the challenge independent only when a separate reviewer performs it.
 
 If the challenge finds a new `P0` or `P1` candidate, reopen the affected lanes.
 
-Rebuild the relevant change graph before continuing. Do not repeat an unchanged pass without a new hypothesis.
+Rebuild the relevant change graph before continuing. Route the new candidate through structured adversarial audit.
+
+Do not repeat an unchanged pass without a new hypothesis.
 
 ## Completion gate
 
@@ -173,7 +187,9 @@ The review completes only when all conditions hold:
 - Every high-risk edge and invariant has a result.
 - Every high-risk invariant has a secondary reviewer when delegation is available.
 - Every candidate has an internal lifecycle state.
+- Every candidate that entered adversarial audit has a critic verdict, scope status, and evidence-backed resolution.
 - No blocking candidate remains `unresolved` or `unconfirmed`.
+- No audit-required blocking candidate remains disputed or unaudited.
 - Every unavailable check appears as `Not covered`.
 - The integration challenge record is complete and finds no new blocking defect.
 
@@ -189,6 +205,9 @@ Report an incomplete review when resource or access limits prevent the gate from
 - Keep specialists read-only to prevent shared-state conflicts.
 - Use one immutable brief so every lane reviews the same target.
 - Preserve independent inspection to reduce anchoring.
+- Freeze the artifact during reviewer-critic exchanges.
+- Require evidence changes to resolve disagreement. Do not accept confident rebuttals alone.
+- Apply scope status before a concern becomes a finding.
 - Deduplicate before reporting to control comment volume.
 - Treat more agents as additional evidence, not proof of completeness.
 

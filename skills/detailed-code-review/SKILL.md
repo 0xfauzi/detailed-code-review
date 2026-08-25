@@ -39,7 +39,8 @@ For Git targets, resolve and record exact revisions before inspection. Read [ref
 4. Choose the review execution shape.
    - Use parallel specialists when independent risk lanes justify the cost and delegation is permitted.
    - Otherwise, run the same lanes as separate local passes.
-   - Read [references/multi-agent-review.md](references/multi-agent-review.md) for routing, synthesis, and stopping rules.
+   - Keep discovery independent. Do not expose one lane's candidates to another lane before synthesis.
+   - Read [references/multi-agent-review.md](references/multi-agent-review.md) for routing and synthesis rules.
 5. Inspect the implementation by assigned lanes.
    - Trace changed values through relevant callers and consumers.
    - Test assumptions against types, schemas, documentation, and repository patterns.
@@ -50,16 +51,25 @@ For Git targets, resolve and record exact revisions before inspection. Read [ref
    - Otherwise, construct a concrete execution path from input to failure.
    - Check whether nearby code, framework behavior, or configuration prevents the issue.
    - Deduplicate candidates by root cause, trigger, and outcome.
+   - Reject or question candidates that expand beyond the requested change without a required companion fix.
    - Assign a secondary reviewer to every high-risk invariant when delegation is permitted.
    - Record whether each `P0` and `P1` is independently confirmed, coordinator-reproduced, or unconfirmed.
    - Remove style-only comments that automated tools should handle.
    - Remove findings that depend on unsupported assumptions.
-7. Run a fresh integration challenge.
+7. Audit the candidate review when the adversarial gate triggers.
+   - Trigger the audit for any `P0` or `P1` candidate, conflicting evidence, interacting lanes, or weakly grounded candidate.
+   - Freeze the artifact. The reviewer and critic exchange review text only.
+   - Require the critic to classify each candidate as `AGREE`, `DISAGREE_EVIDENCE`, or `DISAGREE_CONCERN`.
+   - Require a separate scope status for every disputed or newly proposed candidate.
+   - Make the candidate owner answer disagreements with repository evidence.
+   - Treat convergence as a process state, not proof that a finding is correct.
+   - Read [references/adversarial-audit.md](references/adversarial-audit.md) for the exact contract and stopping rules.
+8. Run a fresh integration challenge.
    - Assign an owner and record reviewed edges, hypotheses, commands, rejected candidates, and uncovered areas.
    - Inspect cross-lane interactions and uncovered high-risk edges.
-   - Reopen affected lanes when the challenge finds a new `P0` or `P1` candidate.
+   - Route every new blocking candidate through the adversarial audit before publication.
    - Finish only after the completion gate in the multi-agent protocol passes.
-8. Report findings first.
+9. Report findings first.
    - Order findings by impact and urgency.
    - Give each finding a stable ID such as `F1`.
    - Attach each finding to the smallest useful target line range.
@@ -77,6 +87,7 @@ Report a finding only when all conditions hold:
 - A realistic input, state, or sequence triggers the problem.
 - The repository does not already prevent or handle the problem.
 - The author can act on the comment within this change or a clearly required companion change.
+- The finding stays within the review target, and its fix direction does not expand into unrelated work.
 - The severity matches the demonstrated impact.
 
 Use these priorities:
@@ -102,6 +113,8 @@ Distinguish these comment types:
 - Use a counterexample for boundary and state bugs.
 - Use measurements for performance claims. If measurement is unavailable, request it.
 - Confirm framework and dependency behavior from installed code or primary documentation.
+- Do not treat reviewer-critic agreement, confidence, or repetition as defect evidence.
+- Preserve evidence-backed dissent until the evidence changes. Do not resolve it through conversational agreement.
 - Treat generated code, lockfiles, vendored files, and snapshots according to repository policy.
 - Do not report missing tests alone. Explain the untested behavior and the concrete regression risk.
 - Never claim that tests pass unless the command completed successfully.
@@ -128,6 +141,8 @@ Then state one merge verdict:
 Do not approve when any relevant lane remains `Not covered`.
 
 Do not give an unconditional approval when a high-risk invariant lacked available independent review.
+
+When the adversarial gate triggered, also state whether the audit mode was independent, local, or not covered.
 
 Also state one review result:
 

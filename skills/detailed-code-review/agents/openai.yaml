@@ -1,4 +1,4 @@
 interface:
   display_name: "Detailed Code Review"
   short_description: "Find high-confidence defects in code changes"
-  default_prompt: "Use $detailed-code-review to plan risk lanes, review this change, synthesize evidence-backed findings, show coverage, and give a merge verdict."
+  default_prompt: "Use $detailed-code-review to plan risk lanes, review this change, audit candidate findings through structured disagreement, show coverage, and give a merge verdict."
